@@ -13,30 +13,38 @@ public class IterativeMethods {
 	 *         ...)
 	 */
 	public static double geometricSum(int n) {
-		double sum = 0.0;
-		for (int power = 1; power <= n; ++power) {
+		//double sum = 0.0;
+		/*for (int power = 1; power <= n; ++power) {
 			sum = sum + Math.pow(0.5, power);
+		}*/
+		if (n==1) {
+			return 1/2;
 		}
-		return sum;
+		else {
+			
+			return Math.pow(0.5, n)+geometricSum(n-1) ;
+			}
 	}
 
 	/**
 	 * @param array the array to create a reverse of, not to be mutated
 	 * @return an array with the same data as the input but it reverse order
 	 */
+	public static int toReversedHelper(int[] array, int i) {
+		
+		if (i<0 || i>= array.length) {
+			return 0;
+		}
+		else {
+			
+			return array[i+1];
+		}
+		
+	}
 	public static int[] toReversed(int[] array) {
 		int[] reversed = new int[array.length];
-		if (array.length > 0) {
-			int lastIndex = array.length - 1;
-			for (int index = 0; index <= array.length / 2; ++index) {
-				int mirrorIndex = lastIndex - index;
-				// note:
-				// since we read from array and write to reversed
-				// we do not need to use a temp variable
-				reversed[index] = array[mirrorIndex];
-				reversed[mirrorIndex] = array[index];
-			}
-		}
+		int i=0;
+		reversed[array.length-i-1] = toReversedHelper(array, i);
 		return reversed;
 	}
 	
